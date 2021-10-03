@@ -25,12 +25,3 @@ Install Dependencies.
 ## Running 
 
 `python3 stockmirror.py`
-
-## Features
-
-* Includes music playlist
-* Most recent Elon Musk tweet printed
-
-## License 
-
-Licensed under the GPL - see the [LICENSE](LICENSE.md) for details.
