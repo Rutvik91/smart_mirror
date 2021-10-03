@@ -1,4 +1,4 @@
-# stock-mirror
+# Smart-Mirror
 
 A Raspberry Pi powered magic-mirror/smart-mirror that displays current information about stocks, cryptocurrencies, fx majors, metals, weather, time, etc. 
 + additional features/ add-ons
@@ -7,11 +7,11 @@ A Raspberry Pi powered magic-mirror/smart-mirror that displays current informati
 
 Clone the repository. 
 
-`git clone github.com/nolimitcarter/stock-mirror`
+"git clone https://github.com/Rutvik91/smart_mirror.git"
 
 Navigate to the directory the program is in.
 
-`cd stock-mirror` 
+`cd smart_mirror` 
 
 Install Dependencies. 
 
@@ -24,4 +24,4 @@ Install Dependencies.
 
 ## Running 
 
-`python3 stockmirror.py`
+`python3 smartmirror.py`
