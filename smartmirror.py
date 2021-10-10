@@ -157,8 +157,8 @@ class Weather(Frame):
                 #location2 = "%s, %s" % (location_obj['city'], location_obj['region_code'])
 
                 # get weather
-                weather_req_url = "http://api.openweathermap.org/data/2.5/weather?q=Charlotte&appid={APIKEY}".format(city)
-                res = requests.get(url)
+                weather_req_url = "https://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=a1b474ad9d4e32d5d94d6543c933cca3".format(city)
+                res = requests.get(weather_req_url)
                 data = res.json()
                 temp = data['main']['temp']
                 wind_speed = data['wind']['speed']
@@ -167,19 +167,21 @@ class Weather(Frame):
                 #print(weather['main']['temp'])
                 #print(weather)
             else:
-                #city = "Charlotte, "
-                #region = "United States"
+                # city = "Charlotte, "
+                # region = "United States"
                 location2 = city + region
                 # get weather
-                weather_req_url = "https://api.openweathermap.org/data/2.5/weather?q={}&units=metric&appid={APIKEY}".format(city)
-               #https://api.darksky.net/forecast/%s/%s,%s?lang=%s&units=%s 
+                # weather_req_url = "https://api.openweathermap.org/data/2.5/weather?q={}&units=metric&appid={a1b474ad9d4e32d5d94d6543c933cca3}".format(city)
+                # weather_req_url = "https://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=a1b474ad9d4e32d5d94d6543c933cca3".format(city)
+                weather_req_url = "https://api.openweathermap.org/data/2.5/onecall?lat=23.0225&lon=72.5714&exclude=hourly&units=metric&appid=a1b474ad9d4e32d5d94d6543c933cca3"
+
+               #https://api.darksky.net/forecast/%s/%s,%s?lang=%s&units=%s
             r = requests.get(weather_req_url)
             weather_obj = json.loads(r.text)
-
-            degree_sign= u'\N{DEGREE SIGN}'
-            #temperature2 = "%s%s" % (str(int(weather_obj['main']['temp'])), degree_sign)
-            c = int(weather_obj["main"]["temp"])
-            f = int(1.8*(c)+32)
+            degree_sign = u'\N{DEGREE SIGN}'
+            # temperature2 = "%s%s" % (str(int(weather_obj['main']['temp'])), degree_sign)
+            f = float(weather_obj["current"]["temp"])
+            # f = int(1.8*(c)+32)
             temperature2 = "%s%s" % (str(f), degree_sign)
             #print(weather_obj[0])['weather']['main']
             #currently2 = (str(int(weather_obj['main']['temp_max'])), degree_sign)
@@ -188,19 +190,19 @@ class Weather(Frame):
             #data = json.dumps(wjdata)
             #data = weather_obj['wind']['wind_speed']
             #city2 = (str(weather_obj['sys']['country']), degree_sign)
-            mt = int(weather_obj["main"]["temp_max"])
-            mtf = int(1.8*(mt)+32)
+            mtf = int(weather_obj["daily"][0]["temp"]['min'])
+            # mtf = int(1.8*(mt)+32)
             currently2 = "%s%s" % (str(mtf), degree_sign)
             #currently2 = weather_obj['main']['temp_max']
 
-            lt = int(weather_obj["main"]["temp_min"])
-            ltf = int(1.8*(lt)+32)
+            ltf = int(weather_obj["daily"][0]["temp"]['max'])
+            # ltf = int(1.8*(lt)+32)
             forecast2 = "%s%s" % (str(ltf), degree_sign)
-            description2 = weather_obj['weather'][0]['description']
+            # description2 = weather_obj['current']['weather']['description']
             #forecast2 = (str(int(weather_obj["main"]["humidity"])), degree_sign)
             #city2 = (str(weather_obj['sys']['country']), degree_sign)
 
-            icon_id = weather_obj["main"]["temp_max"]
+            icon_id = weather_obj["current"]["temp"]
             icon2 = None
 
             if icon_id in icon_lookup:
@@ -329,7 +331,7 @@ class News(Frame):
             traceback.print_exc()
             print ("Error: %s. Cannot get news." % e)
 
-        self.after(600000, self.get_headlines)
+        self.after(60000, self.get_headlines)
 
 
 class NewsHeadline(Frame):

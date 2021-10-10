@@ -22,11 +22,11 @@ for line in open('requirements.txt', 'r'):
 
 # Run setuptools for pip
 setup(
-    name='stock-mirror',
+    name='smart_mirror',
     version='1.0',
     description='Raspberry powered mirror',
     author='nolimitcarter',
-    url='https://github.com/nolimitcarter/stock-mirror',
+    url='https://github.com/Rutvik91/smart_mirror.git',
     install_requires=packages,
     packages=find_packages(),
 )
